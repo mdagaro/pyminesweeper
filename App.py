@@ -45,7 +45,7 @@ class App:
 		def easy():
 			self.game.width=8
 			self.game.height=8
-			self.game.num_bombs = 1
+			self.game.num_bombs = 10
 			self.game.tiles = self.game.init_tiles(self.game.transform)
 			open_game()
 		def medium():
