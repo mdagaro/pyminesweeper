@@ -181,6 +181,19 @@ class GameScreen:
 				screen.blit(
 					fonthandler[('arial', 72)].render("You Win!", True, pygame.Color('black')), (400, 50))
 
+	def cascade(self,tile):
+		queue = []
+		tile.reveal(self)
+		if not tile.is_bomb:
+			queue.append(tile)
+		while len(queue) != 0:
+			tile = queue.pop(0)
+			if tile.get_bomb_num(self) == 0:
+				for x in self.get_surrounding_tiles(tile):
+					if not x.revealed:
+						queue.append(x)
+						x.reveal(self)
+
 	def is_solved(self):
 		return all(all(t.revealed for t in column if not t.is_bomb) for column in self.tiles)
 

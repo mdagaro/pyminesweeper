@@ -96,22 +96,11 @@ class App:
 					for column in self.game.tiles:
 						for tile in column:
 							if tile.rect.collidepoint(mouse_pos) and not tile.is_flagged:
-								queue = []
-								tile.reveal(self.game)
-								if not tile.is_bomb:
-									queue.append(tile)
-								while len(queue) != 0:
-									tile = queue.pop(0)
-									if tile.get_bomb_num(self.game) == 0:
-										for x in self.game.get_surrounding_tiles(tile):
-											if not x.revealed:
-												queue.append(x)
-												x.reveal(self.game)
+								self.game.cascade(tile)
 					for b in self.game.buttons:
 						if b.rect.collidepoint(mouse_pos):
 							b.on_click()
 			elif event.button == 3:
-				print("shush")
 				mouse_pos = pygame.mouse.get_pos()
 				if self.game.visible:
 					for column in self.game.tiles:
@@ -133,9 +122,10 @@ class App:
 
 	def on_loop(self):
 		"""
-		I don't know why this is here.
+		Checks whether you've won the game.
 		:return:
 		"""
+		# TODO set up loop
 
 	def on_render(self):
 		"""
