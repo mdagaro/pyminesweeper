@@ -40,9 +40,7 @@ class GameScreen:
 		for i in range(self.width):
 			column = []
 			for j in range(self.height):
-				bomb = False
-				if (i,j) in bomb_locations:
-					bomb = True
+				bomb = if (i,j) in bomb_locations
 				location = (50*transform*i+50,50*transform*j+50)
 				matrix = (i,j)
 				column.append(MyTile(location, bomb, transform, matrix))
